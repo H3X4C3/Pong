@@ -18,9 +18,9 @@ namespace Pong
         private bool moveDown;
         private int p1Score = 0;
         private int p2Score = 0;
-        private int speedX = 4;
-        private int speedY = 4;
-        private int cpuSpeed = 5;
+        private int speedX = 10;
+        private int speedY = 10;
+        private int cpuSpeed = 10;
 
         // BALL POSITION
         private int ballStartingPosX;
@@ -88,20 +88,18 @@ namespace Pong
             player1Score.Text = "" + p1Score;
             player2Score.Text = "" + p2Score;
 
-            // CPU MOVEMENT
-            player2.Top += cpuSpeed;
-            if (!player2.Bounds.IntersectsWith(barrier.Bounds) || player2.Top + player2.Height < 600) cpuSpeed = -cpuSpeed;
-
             //Check who wins
             if (p1Score == 10)
             {
                 timer.Stop();
-                MessageBox.Show("Player 1 Wins!");
+                lblWinner.Enabled = true;
+                lblWinner.Text = "Player 1 Wins!";
             }
             if(p2Score == 10)
             {
                 timer.Stop();
-                MessageBox.Show("Player 2 Wins!");
+                lblWinner.Enabled = true;
+                lblWinner.Text = "Player 2 Wins!";
             }
 
             // UPDATE BALL MOVEMENT
@@ -124,13 +122,20 @@ namespace Pong
                 speedX = -speedX;
             }
 
+            // CPU MOVEMENT
+            player2.Top += cpuSpeed;
+            if (player2.Top < 130 || player2.Top + player2.Height > this.ClientSize.Height)
+            {
+                cpuSpeed = -cpuSpeed;
+            }
+
+            // PLAYER MOVEMENT
+            if (moveUp == true && player1.Top > 130) player1.Top -= 10;
+            if (moveDown == true && player1.Top + player1.Height < this.ClientSize.Height) player1.Top += 10;
+
             // BALL MOVEMENT
             if (ball.Bounds.IntersectsWith(barrier.Bounds) || ball.Top + ball.Height > this.ClientSize.Height) speedY = -speedY;
             if (ball.Bounds.IntersectsWith(player1.Bounds) || ball.Bounds.IntersectsWith(player2.Bounds)) speedX = -speedX;
-
-            // PLAYER MOVEMENT
-            if (moveUp == true && !player1.Bounds.IntersectsWith(barrier.Bounds)) player1.Top -= 5;
-            if (moveDown == true && player1.Top + player1.Height < this.ClientSize.Height) player1.Top += 5;
         }
     }
 }
