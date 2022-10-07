@@ -18,9 +18,9 @@ namespace Pong
             InitializeComponent();
         }
 
+        PrivateFontCollection fontCollection = new PrivateFontCollection(); // CUSTOM FONT
         private void HelpScreen_Load(object sender, EventArgs e)
         {
-            PrivateFontCollection fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile(Application.StartupPath + @"..\..\..\resources\fonts\ThaleahFat.ttf");
             foreach (Control c in this.Controls)
             {

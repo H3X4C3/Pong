@@ -5,9 +5,10 @@ namespace Pong
 {
     public partial class Menu : Form
     {
-        //GameScreen gameScreen = new GameScreen();
-        //HelpScreen helpScreen = new HelpScreen();
+        // MUSIC
         SoundPlayer soundPlayer = new SoundPlayer(@"..\..\..\resources\audio\Menu Theme.wav");
+        // CUSTOM FONT
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public Menu()
         {
@@ -16,7 +17,6 @@ namespace Pong
 
         private void Menu_Load(object sender, EventArgs e)
         {
-            PrivateFontCollection fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile(Application.StartupPath + @"..\..\..\resources\fonts\ThaleahFat.ttf");
             foreach(Control c in this.Controls)
             {
@@ -37,6 +37,7 @@ namespace Pong
             {
                 this.Hide();
                 gameScreen.ShowDialog();
+                gameScreen.BringToFront();
                 this.Show();
 
                 soundPlayer.PlayLooping(); // replay after going back to menu
@@ -44,11 +45,6 @@ namespace Pong
             {
                 string error = exception.ToString();
             }
-            this.Hide();
-            gameScreen.ShowDialog();
-            this.Show();
-
-            soundPlayer.PlayLooping(); // replay after going back to menu
         }
 
         private void goToHelp(object sender, EventArgs e)
@@ -58,13 +54,12 @@ namespace Pong
             // switch to help screen when button is clicked
             this.Hide();
             helpScreen.ShowDialog();
+            helpScreen.BringToFront();
             this.Show();
         }
 
         private void exitGame(object sender, EventArgs e)
         {
-
-
             // Exit game when clicked
             this.Close();
         }

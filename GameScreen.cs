@@ -25,11 +25,14 @@ namespace Pong
         // VELOCITY
         private int speedX = 8;
         private int speedY = 8;
-        private int cpuSpeed = 10;
+        private int cpuSpeed = 6;
 
         // DEAFULT POSITIONS
         private int ballStartingPosX;
         private int ballStartingPosY;
+
+        // AI RANDOMIZATION
+        Random rand = new Random();
 
         // MUSIC
         SoundPlayer player;
@@ -46,9 +49,9 @@ namespace Pong
             timer.Start();
         }
 
+        PrivateFontCollection fontCollection = new PrivateFontCollection(); // CUSTOM FONT
         private void GameScreen_Load(object sender, EventArgs e)
         {
-            PrivateFontCollection fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile(Application.StartupPath + @"..\..\..\resources\fonts\ThaleahFat.ttf");
             foreach (Control c in this.Controls)
             {
@@ -90,7 +93,7 @@ namespace Pong
         // CHECK SCORE
         private void checkScore()
         {
-            //Check who wins
+            // Check who wins
             if (p1Score == 10)
             {
                 timer.Stop();
@@ -129,6 +132,7 @@ namespace Pong
             }
         }
 
+        // BALL MOVEMENT
         private void ballMovement()
         {
             
