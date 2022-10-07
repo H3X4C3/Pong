@@ -5,8 +5,8 @@ namespace Pong
 {
     public partial class Menu : Form
     {
-        GameScreen gameScreen = new GameScreen();
-        HelpScreen helpScreen = new HelpScreen();
+        //GameScreen gameScreen = new GameScreen();
+        //HelpScreen helpScreen = new HelpScreen();
         SoundPlayer soundPlayer = new SoundPlayer(@"..\..\..\resources\audio\Menu Theme.wav");
 
         public Menu()
@@ -28,6 +28,8 @@ namespace Pong
 
         private void goToGameScreen(object sender, EventArgs e)
         {
+            GameScreen gameScreen = new GameScreen();
+
             soundPlayer.Stop(); // stop playing music
 
             // switch to game screen when button is clicked
@@ -40,6 +42,8 @@ namespace Pong
 
         private void goToHelp(object sender, EventArgs e)
         {
+            HelpScreen helpScreen = new HelpScreen();
+
             // switch to help screen when button is clicked
             this.Hide();
             helpScreen.ShowDialog();
@@ -48,6 +52,8 @@ namespace Pong
 
         private void exitGame(object sender, EventArgs e)
         {
+
+
             // Exit game when clicked
             this.Close();
         }
