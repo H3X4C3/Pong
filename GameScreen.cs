@@ -39,8 +39,10 @@ namespace Pong
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             InitializeComponent();
+
             ballStartingPosX = ball.Left + ball.Width;
             ballStartingPosY = ball.Top + ball.Height;
+
             timer.Start();
         }
 
@@ -62,7 +64,7 @@ namespace Pong
         {
             timer.Start();
 
-            // HIDE WIN MENU AND STOP MUSIC
+            // HIDE WIN MENU
             player.Stop();
             winMenu.Enabled = false;
             winMenu.Hide();
@@ -143,15 +145,19 @@ namespace Pong
             {
                 case Keys.W:
                     moveUp = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.S:
                     moveDown = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Up:
                     moveUp = true;
+                    e.SuppressKeyPress = true;
                     break;
                 case Keys.Down:
                     moveDown = true;
+                    e.SuppressKeyPress = true;
                     break;
             }
         }
