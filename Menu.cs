@@ -33,6 +33,17 @@ namespace Pong
             soundPlayer.Stop(); // stop playing music
 
             // switch to game screen when button is clicked
+            try
+            {
+                this.Hide();
+                gameScreen.ShowDialog();
+                this.Show();
+
+                soundPlayer.PlayLooping(); // replay after going back to menu
+            } catch(Exception exception)
+            {
+                string error = exception.ToString();
+            }
             this.Hide();
             gameScreen.ShowDialog();
             this.Show();

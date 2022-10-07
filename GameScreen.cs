@@ -91,7 +91,7 @@ namespace Pong
         private void checkScore()
         {
             //Check who wins
-            if (p1Score == 1)
+            if (p1Score == 10)
             {
                 timer.Stop();
                 winMenu.Enabled = true;
@@ -100,7 +100,7 @@ namespace Pong
                 player = new SoundPlayer(@"..\..\..\resources\audio\Game Won.wav");
                 player.Play();
             }
-            if (p2Score == 1)
+            if (p2Score == 10)
             {
                 timer.Stop();
                 winMenu.Enabled = true;
